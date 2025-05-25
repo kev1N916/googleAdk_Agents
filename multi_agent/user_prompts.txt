@@ -1,0 +1,4 @@
+Find all Jira issues assigned to me, summarize them, and send the summary to kevintj916@gmail.com.
+
+Get a summary of all my open Jira issues and email it to kevintj916@gmail.com.
+

@@ -1,62 +1,41 @@
-# Copyright 2025 Google LLC
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
-# Shows how to call all the sub-agents using the LLM's reasoning ability. Run this with "adk run" or "adk web"
-
 from google.adk.agents import LlmAgent
 from google.adk.tools import google_search
-
+from .tools import send_email,get_jira_project_issues_and_comments
 from .util import load_instruction_from_file
 
-# --- Sub Agent 1: Scriptwriter ---
-scriptwriter_agent = LlmAgent(
-    name="ShortsScriptwriter",
+notification_sender_agent = LlmAgent(
+    name="NotificationSender",
     model="gemini-2.0-flash-001",
-    instruction=load_instruction_from_file("scriptwriter_instruction.txt"),
-    tools=[google_search],
-    output_key="generated_script",  # Save result to state
+    description="Sends notifications via different channels which can be email,outlook, teams etc using the tools provided to it.",
+    instruction=load_instruction_from_file("notification_sender_instruction.txt"),
+    tools=[send_email],
 )
 
-# --- Sub Agent 2: Visualizer ---
-visualizer_agent = LlmAgent(
-    name="ShortsVisualizer",
+summarizer_agent = LlmAgent(
+    name="Summarizer",
     model="gemini-2.0-flash-001",
-    instruction=load_instruction_from_file("visualizer_instruction.txt"),
-    description="Generates visual concepts based on a provided script.",
-    output_key="visual_concepts",  # Save result to state
+    instruction=load_instruction_from_file("summarizer_instruction.txt"),
+    description="Generates summaries about JIRA issues from their comments using internal logic and reasoning.",
 )
 
-# --- Sub Agent 3: Formatter ---
-# This agent would read both state keys and combine into the final Markdown
-formatter_agent = LlmAgent(
-    name="ConceptFormatter",
+jira_interactor_agent = LlmAgent(
+    name="JiraInteractor",
     model="gemini-2.0-flash-001",
-    instruction="""Combine the script from state['generated_script'] and the visual concepts from state['visual_concepts'] into the final Markdown format requested previously (Hook, Script & Visuals table, Visual Notes, CTA).""",
-    description="Formats the final Short concept.",
-    output_key="final_short_concept",
+    instruction=load_instruction_from_file("jira_interactor_instruction.txt"),
+    description="Interacts with JIRA for various tasks such as fetching issues, comments, and project details, making new comments, creating new issues, deleting issues.",
+    tools=[get_jira_project_issues_and_comments],
 )
 
 
 # --- Llm Agent Workflow ---
-youtube_shorts_agent = LlmAgent(
-    name="youtube_shorts_agent",
+jira_Automation_Agent = LlmAgent(
+    name="jira_Automation_Agent",
     model="gemini-2.0-flash-001",
-    instruction=load_instruction_from_file("shorts_agent_instruction.txt"),
-    description="You are an agent that can write scripts, visuals and format youtube short videos. You have subagents that can do this",
-    sub_agents=[scriptwriter_agent, visualizer_agent, formatter_agent],
+    instruction=load_instruction_from_file("jira_automation_instruction.txt"),
+    description="You are an agent that can send make requests to JIRA for issues and comments, summarize these issues and also send notifications to different channels." \
+    "You have sub-agents that will help you with these tasks. " ,
+    sub_agents=[jira_interactor_agent, summarizer_agent, notification_sender_agent],
 )
 
-# --- Root Agent for the Runner ---
 # The runner will now execute the workflow
-root_agent = youtube_shorts_agent
+root_agent = jira_Automation_Agent
