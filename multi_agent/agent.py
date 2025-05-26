@@ -26,7 +26,6 @@ jira_interactor_agent = LlmAgent(
     tools=[get_jira_project_issues_and_comments],
 )
 
-
 # --- Llm Agent Workflow ---
 jira_Automation_Agent = LlmAgent(
     name="jira_Automation_Agent",
