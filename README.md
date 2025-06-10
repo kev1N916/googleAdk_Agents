@@ -19,7 +19,7 @@ This guide will walk you through the process of setting up a Microsoft Bot, incl
     * [Authenticate Ngrok](#authenticate-ngrok)
     * [Start Ngrok Tunnel](#start-ngrok-tunnel)
 5.  [Connect Bot to Ngrok](#5-connect-bot-to-ngrok)
-6.  [Microsoft Teams App Manifest Configuration](#6-testing-your-bot)
+6.  [Microsoft Teams App Manifest Configuration](#6-microsoft-teams-app-manifest-configuration)
 
 ## 1. Prerequisites
 
@@ -193,7 +193,7 @@ Ngrok creates a secure tunnel to your localhost, making your local bot accessibl
 
     Copy the `https` forwarding URL (e.g., `https://<YOUR_NGROK_URL>.ngrok-free.app`). This is your public endpoint.
 
-## 5\. Connect Bot to Ngrok
+## 5. Connect Bot to Ngrok
 
 Now, you need to update your Azure Bot's messaging endpoint to point to your ngrok URL.
 
