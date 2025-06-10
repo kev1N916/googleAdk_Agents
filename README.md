@@ -213,24 +213,28 @@ Now, you need to update your Azure Bot's messaging endpoint to point to your ngr
 
 5.  Click `Apply` at the top to save the changes.
 
-## 6\. Microsoft Teams App Manifest Configuration
-To upload your bot as a custom app to Microsoft Teams, you need a manifest.json file (along with color.png and outline.png icons) packaged into a .zip file. This manifest.json describes your bot to Teams.
+Here's the formatted section for your `README.md` file, covering the `manifest.json` for Microsoft Teams app uploads:
 
-Create a manifest.json file (e.g., in a teams_app_package directory) with the following structure. Fill in the placeholders with your specific details:
+---
 
-JSON
+## 6. Microsoft Teams App Manifest Configuration
 
+To upload your bot as a custom app to Microsoft Teams, you need a `manifest.json` file (along with `color.png` and `outline.png` icons) packaged into a `.zip` file. This `manifest.json` describes your bot to Teams.
+
+Create a `manifest.json` file (for example, in a `teams_app_package` directory) with the following structure. Fill in the placeholders with your specific details:
+
+```json
 {
-  "$schema": "[https://developer.microsoft.com/en-us/json-schemas/teams/v1.11/MicrosoftTeams.schema.json](https://developer.microsoft.com/en-us/json-schemas/teams/v1.11/MicrosoftTeams.schema.json)",
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.11/MicrosoftTeams.schema.json",
   "manifestVersion": "1.11",
   "version": "1.0.0",
   "id": "YOUR_MICROSOFT_APP_ID",
   "packageName": "com.example.yourbot",
   "developer": {
     "name": "Your Company Name",
-    "websiteUrl": "[https://yourwebsite.com](https://yourwebsite.com)",
-    "privacyUrl": "[https://yourwebsite.com/privacy](https://yourwebsite.com/privacy)",
-    "termsOfUseUrl": "[https://yourwebsite.com/terms](https://yourwebsite.com/terms)"
+    "websiteUrl": "https://yourwebsite.com",
+    "privacyUrl": "https://yourwebsite.com/privacy",
+    "termsOfUseUrl": "https://yourwebsite.com/terms"
   },
   "name": {
     "short": "Your Bot Name",
@@ -266,28 +270,31 @@ JSON
     "token.botframework.com" // Required for bot authentication
   ]
 }
-Key fields to update:
+```
 
-id: Your Microsoft App ID.
-packageName: A unique identifier for your app (e.g., com.mycompany.mybot).
-developer: Your company's name and URLs.
-name: The short and full names for your bot as they'll appear in Teams.
-description: Provide clear descriptions of your bot's function.
-accentColor: A hexadecimal color code for the app's theme.
-icons: Make sure color.png (192x192 pixels) and outline.png (32x32 pixels) are in the same directory as your manifest.json.
-bots[0].botId: This should also be your Microsoft App ID.
-bots[0].scopes: Defines where your bot can be used (personal for 1:1 chats, team for channels, groupchat for group chats).
-webApplicationInfo.id: Your Microsoft App ID.
-webApplicationInfo.resource: The Azure Bot resource URI. Replace YOUR_MICROSOFT_APP_ID with your actual ID.
-validDomains:
-Add *.ngrok-free.app (or your specific ngrok domain) to allow Teams to communicate with your local bot via the tunnel.
-Include your bot's public domain if it has one (e.g., yourwebsite.com).
-token.botframework.com is crucial for bot authentication.
-Packaging for Teams:
+**Key fields to update:**
 
-Create a new folder (e.g., teams_app_package).
-Place your manifest.json, color.png, and outline.png inside this folder.
-Compress (zip) the contents of this folder, not the folder itself. The .zip file should contain manifest.json, color.png, and outline.png directly at its root.
-This .zip file is what you will upload to Teams.
+* **`id`**: This should be your **Microsoft App ID**.
+* **`packageName`**: A unique identifier for your app (e.g., `com.mycompany.mybot`).
+* **`developer`**: Update with your company's name and relevant URLs.
+* **`name`**: Set the **short** and **full** names for your bot as they'll appear in Teams.
+* **`description`**: Provide clear **short** and **full** descriptions of your bot's functionality.
+* **`accentColor`**: A hexadecimal color code for the app's theme.
+* **`icons`**: Ensure you have **`color.png`** (192x192 pixels) and **`outline.png`** (32x32 pixels) in the same directory as your `manifest.json`.
+* **`bots[0].botId`**: This should also be your **Microsoft App ID**.
+* **`bots[0].scopes`**: Defines where your bot can be used (`personal` for 1:1 chats, `team` for channels, `groupchat` for group chats).
+* **`webApplicationInfo.id`**: Your **Microsoft App ID**.
+* **`webApplicationInfo.resource`**: The **Azure Bot resource URI**. Replace `YOUR_MICROSOFT_APP_ID` with your actual ID.
+* **`validDomains`**:
+    * Add **`*.ngrok-free.app`** (or your specific ngrok domain) to allow Teams to communicate with your local bot via the tunnel.
+    * Include your bot's public domain if it has one (e.g., `yourwebsite.com`).
+    * **`token.botframework.com`** is crucial for bot authentication.
+
+### Packaging for Teams:
+
+1.  Create a new folder (e.g., `teams_app_package`).
+2.  Place your `manifest.json`, `color.png`, and `outline.png` files inside this folder.
+3.  **Compress (zip) the *contents* of this folder**, not the folder itself. The `.zip` file should contain `manifest.json`, `color.png`, and `outline.png` directly at its root.
+4.  This `.zip` file is what you will upload to Teams.
 
 This README provides a comprehensive guide for setting up your Microsoft Bot. Happy coding\!
