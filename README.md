@@ -213,32 +213,81 @@ Now, you need to update your Azure Bot's messaging endpoint to point to your ngr
 
 5.  Click `Apply` at the top to save the changes.
 
-## 6\. Testing Your Bot
+## 6\. Microsoft Teams App Manifest Configuration
+To upload your bot as a custom app to Microsoft Teams, you need a manifest.json file (along with color.png and outline.png icons) packaged into a .zip file. This manifest.json describes your bot to Teams.
 
-You can test your bot using the `Test in Web Chat` feature in the Azure Portal.
+Create a manifest.json file (e.g., in a teams_app_package directory) with the following structure. Fill in the placeholders with your specific details:
 
-1.  In your Azure Bot resource, go to `Channels`.
-2.  Click on `Test in Web Chat`.
-3.  Type a message in the chat window. If everything is configured correctly, your bot should respond. You should also see activity in your local bot's terminal and the ngrok terminal.
+JSON
 
-## 7\. Troubleshooting
+{
+  "$schema": "[https://developer.microsoft.com/en-us/json-schemas/teams/v1.11/MicrosoftTeams.schema.json](https://developer.microsoft.com/en-us/json-schemas/teams/v1.11/MicrosoftTeams.schema.json)",
+  "manifestVersion": "1.11",
+  "version": "1.0.0",
+  "id": "YOUR_MICROSOFT_APP_ID",
+  "packageName": "com.example.yourbot",
+  "developer": {
+    "name": "Your Company Name",
+    "websiteUrl": "[https://yourwebsite.com](https://yourwebsite.com)",
+    "privacyUrl": "[https://yourwebsite.com/privacy](https://yourwebsite.com/privacy)",
+    "termsOfUseUrl": "[https://yourwebsite.com/terms](https://yourwebsite.com/terms)"
+  },
+  "name": {
+    "short": "Your Bot Name",
+    "full": "Your Awesome Bot for Teams"
+  },
+  "description": {
+    "short": "A short description of your bot.",
+    "full": "This is a full description of your awesome bot that explains its features and how it helps users in Microsoft Teams."
+  },
+  "accentColor": "#FFFFFF",
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "bots": [
+    {
+      "botId": "YOUR_MICROSOFT_APP_ID",
+      "scopes": [ "personal", "team", "groupchat" ],
+      "supportsFiles": false,
+      "isNotificationOnly": false
+    }
+  ],
+  "composeExtensions": [],
+  "configurableTabs": [],
+  "staticTabs": [],
+  "webApplicationInfo": {
+    "id": "YOUR_MICROSOFT_APP_ID",
+    "resource": "api://botid-YOUR_MICROSOFT_APP_ID"
+  },
+  "validDomains": [
+    "*.ngrok-free.app", // Essential for ngrok testing
+    "yourwebsite.com", // Your bot's public domain, if any
+    "token.botframework.com" // Required for bot authentication
+  ]
+}
+Key fields to update:
 
-  * **Bot not responding in Web Chat:**
-      * Ensure your local bot is running.
-      * Verify your ngrok tunnel is active and forwarding traffic to the correct port.
-      * Check the `Messaging endpoint` in Azure Bot configuration for typos. It must be the `https` ngrok URL followed by `/api/messages`.
-      * Review your bot's code for any errors.
-      * Check Azure Bot service logs for errors.
-  * **Ngrok connection issues:**
-      * Ensure you have authenticated ngrok with your authtoken.
-      * Check your firewall settings if they are blocking ngrok.
-  * **Authentication errors (401 Unauthorized):**
-      * Double-check your `MicrosoftAppId` and `MicrosoftAppPassword` in your `.env` file. Ensure they match the values from Azure.
-      * Make sure you copied the *Value* of the client secret when you created it, not the Secret ID.
-  * **General debugging:**
-      * Use the ngrok web interface (`http://127.0.0.1:4040`) to inspect requests and responses passing through the tunnel.
-      * Enable logging in your bot's code for more detailed insights.
+id: Your Microsoft App ID.
+packageName: A unique identifier for your app (e.g., com.mycompany.mybot).
+developer: Your company's name and URLs.
+name: The short and full names for your bot as they'll appear in Teams.
+description: Provide clear descriptions of your bot's function.
+accentColor: A hexadecimal color code for the app's theme.
+icons: Make sure color.png (192x192 pixels) and outline.png (32x32 pixels) are in the same directory as your manifest.json.
+bots[0].botId: This should also be your Microsoft App ID.
+bots[0].scopes: Defines where your bot can be used (personal for 1:1 chats, team for channels, groupchat for group chats).
+webApplicationInfo.id: Your Microsoft App ID.
+webApplicationInfo.resource: The Azure Bot resource URI. Replace YOUR_MICROSOFT_APP_ID with your actual ID.
+validDomains:
+Add *.ngrok-free.app (or your specific ngrok domain) to allow Teams to communicate with your local bot via the tunnel.
+Include your bot's public domain if it has one (e.g., yourwebsite.com).
+token.botframework.com is crucial for bot authentication.
+Packaging for Teams:
 
------
+Create a new folder (e.g., teams_app_package).
+Place your manifest.json, color.png, and outline.png inside this folder.
+Compress (zip) the contents of this folder, not the folder itself. The .zip file should contain manifest.json, color.png, and outline.png directly at its root.
+This .zip file is what you will upload to Teams.
 
 This README provides a comprehensive guide for setting up your Microsoft Bot. Happy coding\!
