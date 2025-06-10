@@ -86,7 +86,7 @@ The Azure Bot resource provides the necessary infrastructure for your bot, inclu
 You will need your Bot's Microsoft App ID and App Password (Client Secret) for your local development environment.
 
 1.  Navigate back to your Azure Bot resource overview.
-2.  Copy the **Microsoft App ID**.
+2.  Copy the **Microsoft App ID**(this is the Application (client) ID).
 3.  In the left-hand navigation, under `Settings`, click on `Configuration`.
 4.  Next to `Microsoft App ID`, click on `Manage`. This will take you to the `App registrations` blade for your bot.
 5.  Under `Client secrets`, click `+ New client secret`.
