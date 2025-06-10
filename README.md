@@ -93,6 +93,8 @@ You will need your Bot's Microsoft App ID and App Password (Client Secret) for y
     * Add a description (e.g., `Bot secret`).
     * Set an expiration (e.g., `12 months`).
     * Click `Add`.
+  
+      
       <img width="537" alt="Screenshot 2025-06-11 at 12 09 00 AM" src="https://github.com/user-attachments/assets/fdea4911-109a-4cc8-ac1d-36c193d01a37" />
 
 6.  **Important:** Copy the `Value` of the new client secret immediately. This value is only shown once and will be hidden after you leave this page. This is your **Microsoft App Password**.
