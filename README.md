@@ -4,7 +4,7 @@ This guide will walk you through the process of setting up a Microsoft Bot, incl
 
 ## Table of Contents
 
-1.  [Prerequisites](#prerequisites)
+1.  [1. Prerequisites](#prerequisites)
 2.  [Azure Portal Setup](#azure-portal-setup)
     * [Create a Resource Group](#create-a-resource-group)
     * [Create an Azure Bot Resource](#create-an-azure-bot-resource)
