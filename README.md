@@ -5,21 +5,21 @@ This guide will walk you through the process of setting up a Microsoft Bot, incl
 ## Table of Contents
 
 1.  [Prerequisites](#1-prerequisites)
-2.  [Azure Portal Setup](#azure-portal-setup)
+2.  [Azure Portal Setup](#2-azure-portal-setup)
     * [Create a Resource Group](#create-a-resource-group)
     * [Create an Azure Bot Resource](#create-an-azure-bot-resource)
     * [Configure Channels](#configure-channels)
     * [Get Bot Credentials](#get-bot-credentials)
-3.  [Local Bot Development Setup](#local-bot-development-setup)
+3.  [Local Bot Development Setup](#3-local-bot-development-setup)
     * [Clone your Bot Project](#clone-your-bot-project)
     * [Install Dependencies](#install-dependencies)
     * [Configure Environment Variables](#configure-environment-variables)
-4.  [Ngrok Setup](#ngrok-setup)
+4.  [Ngrok Setup](#4-ngrok-setup)
     * [Download Ngrok](#download-ngrok)
     * [Authenticate Ngrok](#authenticate-ngrok)
     * [Start Ngrok Tunnel](#start-ngrok-tunnel)
-5.  [Connect Bot to Ngrok](#connect-bot-to-ngrok)
-6.  [Microsoft Teams App Manifest Configuration](#testing-your-bot)
+5.  [Connect Bot to Ngrok](#5-connect-bot-to-ngrok)
+6.  [Microsoft Teams App Manifest Configuration](#6-testing-your-bot)
 
 ## 1. Prerequisites
 
