@@ -70,14 +70,16 @@ The Azure Bot resource provides the necessary infrastructure for your bot, inclu
 
 ### Configure Channels
 
-Channels are the communication services your bot can interact with (e.g., Web Chat, Microsoft Teams, Facebook).
+**Channels** are the communication services your bot can interact with (e.g., Web Chat, Microsoft Teams, Facebook).
 
 1.  Once your Azure Bot resource is deployed, navigate to it.
 2.  In the left-hand navigation, under `Settings`, click on `Channels`.
-3.  By default, `Web Chat` is enabled. You can enable other channels as needed. For initial testing, `Web Chat` is sufficient.
-4.  To configure `Web Chat`:
-    * Click on `Web Chat`.
-    * Under `Default Web Chat`, click on `Show key` to reveal your secret keys. You will need one of these keys later for testing.
+3.  To set up **Microsoft Teams**:
+    * In the `Channels` blade, click on `Microsoft Teams`.
+    * Read the Microsoft Teams Channel Terms of Service and click `Agree`.
+    * You might be presented with configuration options depending on your bot's capabilities (e.g., calling, group chat). For a basic messaging bot, you can usually proceed with the default settings.
+    * Click `Save`.
+    * Your bot is now configured to work with Microsoft Teams.
 
 ### Get Bot Credentials
 
@@ -91,6 +93,8 @@ You will need your Bot's Microsoft App ID and App Password (Client Secret) for y
     * Add a description (e.g., `Bot secret`).
     * Set an expiration (e.g., `12 months`).
     * Click `Add`.
+      <img width="537" alt="Screenshot 2025-06-11 at 12 09 00 AM" src="https://github.com/user-attachments/assets/fdea4911-109a-4cc8-ac1d-36c193d01a37" />
+
 6.  **Important:** Copy the `Value` of the new client secret immediately. This value is only shown once and will be hidden after you leave this page. This is your **Microsoft App Password**.
 
 ## 3. Local Bot Development Setup
