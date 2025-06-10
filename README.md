@@ -20,7 +20,6 @@ This guide will walk you through the process of setting up a Microsoft Bot, incl
     * [Start Ngrok Tunnel](#start-ngrok-tunnel)
 5.  [Connect Bot to Ngrok](#connect-bot-to-ngrok)
 6.  [Testing Your Bot](#testing-your-bot)
-7.  [Troubleshooting](#troubleshooting)
 
 ## 1. Prerequisites
 
@@ -229,12 +228,11 @@ Create a `manifest.json` file (for example, in a `teams_app_package` directory) 
   "manifestVersion": "1.11",
   "version": "1.0.0",
   "id": "YOUR_MICROSOFT_APP_ID",
-  "packageName": "com.example.yourbot",
   "developer": {
     "name": "Your Company Name",
-    "websiteUrl": "https://yourwebsite.com",
-    "privacyUrl": "https://yourwebsite.com/privacy",
-    "termsOfUseUrl": "https://yourwebsite.com/terms"
+    "websiteUrl": "https://www.microsoft.com",
+    "privacyUrl": "https://www.microsoft.com/privacy",
+    "termsOfUseUrl": "https://www.microsoft.com/legal/terms-of-use"
   },
   "name": {
     "short": "Your Bot Name",
@@ -244,7 +242,6 @@ Create a `manifest.json` file (for example, in a `teams_app_package` directory) 
     "short": "A short description of your bot.",
     "full": "This is a full description of your awesome bot that explains its features and how it helps users in Microsoft Teams."
   },
-  "accentColor": "#FFFFFF",
   "icons": {
     "color": "color.png",
     "outline": "outline.png"
@@ -253,21 +250,19 @@ Create a `manifest.json` file (for example, in a `teams_app_package` directory) 
     {
       "botId": "YOUR_MICROSOFT_APP_ID",
       "scopes": [ "personal", "team", "groupchat" ],
+      "needsChannelSelector": false,
       "supportsFiles": false,
       "isNotificationOnly": false
     }
   ],
-  "composeExtensions": [],
-  "configurableTabs": [],
-  "staticTabs": [],
-  "webApplicationInfo": {
-    "id": "YOUR_MICROSOFT_APP_ID",
-    "resource": "api://botid-YOUR_MICROSOFT_APP_ID"
-  },
+   "permissions": [
+    "identity",
+    "messageTeamMembers"
+  ],
+  "accentColor": "#60A18E",
   "validDomains": [
     "*.ngrok-free.app", // Essential for ngrok testing
-    "yourwebsite.com", // Your bot's public domain, if any
-    "token.botframework.com" // Required for bot authentication
+    "<YOUR_NGROK_URL>.ngrok-free.app", // Your bot's public domain, if any
   ]
 }
 ```
