@@ -19,7 +19,7 @@ This guide will walk you through the process of setting up a Microsoft Bot, incl
     * [Authenticate Ngrok](#authenticate-ngrok)
     * [Start Ngrok Tunnel](#start-ngrok-tunnel)
 5.  [Connect Bot to Ngrok](#connect-bot-to-ngrok)
-6.  [Testing Your Bot](#testing-your-bot)
+6.  [Microsoft Teams App Manifest Configuration](#testing-your-bot)
 
 ## 1. Prerequisites
 
@@ -59,11 +59,8 @@ The Azure Bot resource provides the necessary infrastructure for your bot, inclu
     * **Subscription:** Select your Azure subscription.
     * **Resource Group:** Choose the resource group you created earlier.
     * **Pricing tier:** Select a pricing tier (e.g., `Standard`).
-    * **Microsoft App ID and Tenant ID:** Select `User-assigned managed identity`.
-        * **Managed identity name:** Give a name for your managed identity.
-        * **Managed identity resource group:** Select the same resource group you created.
     * **Type of App:** Select `Multi Tenant`.
-    * **Creation type:** Choose `Create new Microsoft App ID`. (If you have an existing App ID, you can choose `Use existing app registration`).
+    * **Creation type:** Choose `Create new Microsoft App ID`.
     * **Region:** Select the same region as your resource group.
 4.  Click `Review + create`, then `Create`.
 
